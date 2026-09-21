@@ -29,11 +29,18 @@ A full-stack Node.js application built with Express and React to manage school r
    ```bash
    npm install
    ```
-3. Start the development server (runs both API and Frontend):
+3. (Optional) Copy `.env.example` to `.env` to customize the port.
+4. Start the development server (runs both API and Frontend):
    ```bash
    npm run dev
    ```
-4. Access the application at `http://localhost:3000`.
+5. Access the application at `http://localhost:3000`.
+
+### Production
+```bash
+npm run build   # bundles the frontend into dist/
+npm start       # serves the built frontend + API from server.ts
+```
 
 ## API Endpoints
 
