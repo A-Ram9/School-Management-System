@@ -87,6 +87,24 @@ app.get('/listSchools', (req, res) => {
   res.json(sortedSchools);
 });
 
+// Delete School API
+app.delete('/schools/:id', (req, res) => {
+  const id = Number(req.params.id);
+
+  if (!Number.isInteger(id) || id <= 0) {
+    return res.status(400).json({ error: "Invalid school id" });
+  }
+
+  const stmt = db.prepare('DELETE FROM schools WHERE id = ?');
+  const info = stmt.run(id);
+
+  if (info.changes === 0) {
+    return res.status(404).json({ error: "School not found" });
+  }
+
+  res.json({ message: "School deleted successfully", schoolId: id });
+});
+
 async function startServer() {
   const PORT = Number(process.env.PORT) || 3000;
 
